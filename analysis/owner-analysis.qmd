@@ -16,4 +16,22 @@ library(here)
 ```{r}
 lobster_abundance <- read_csv(here::here("data/Lobster_Abundance_All_Years_20220829.csv"))
 ```
+```{r}
+lobster_abundance <- lobster_abundance %>% 
+    mutate(SIZE_MM = na_if(SIZE_MM, -99999))
+
+head(lobster_abundance)
+```
+```{r}
+not_napl <- lobster_abundance %>% 
+    filter(SITE != "NAPL")
+
+head(not_napl)
+```
+```{r}
+aque_70mm <- lobster_abundance %>% 
+    filter(SITE == "AQUE" & SIZE_MM >= 70)
+
+head(aque_70mm)
+```
 
